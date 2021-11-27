@@ -101,21 +101,35 @@ abstract class SinglyLinkedIntList extends IntList {
   }
 
 
-  override def insertionSort: IntList = {
-      if (this.isEmpty) Nil
-      else insert(this.head,insertionSort)
+  override def insertionSort: IntList = this match {
+    case Empty => Empty
+    //eins wird richtig eingesetzt aber nicht von der alten stelle entfernt und nur ein durchlauf
+    case Cons(head, tail) => tail.insertionSort.insertSorted(head)
+  }
 
-    def insert(h:Int, t:IntList):IntList={
-      if(t.isEmpty || h <= tail.head) Cons(h,t)
-      else Cons(t.head, insert(h,t.tail))
+  override def insertSorted(elem: Int): IntList = {
+    this match {
+      //wenn liste leer gebe liste mit uebergebenen elem zurueck
+      case Empty => Cons(elem, Empty)
+      //wenn kopf groesser als elem dann fuege elem vor head ein
+      case Cons(head, tail) => if (head >= elem) {
+        Cons(head, tail).prepend(elem)
+      }
+      //sonst fuegt man den int rekursiv in das tail der liste
+      else {
+        Cons(head, tail.insertSorted(elem))
+      }
     }
-    insertionSort
+  }
 
-     }
-
-  override def insertSorted(elem: Int): IntList = ???
-
-  override def foldLeft[A](initial: A)(reduceFunc: (A, Int) => A): A = ???
+  override def foldLeft[A](initial: A)(reduceFunc: (A, Int) => A): A = this match {
+    case Empty => initial
+    //Cons kann nur (int, list) sein
+    //i need a substitution of the cons since this function only takes integer as an input
+    //cons willl int aber reduce an der stelle will A
+    case Cons(head, tail) => tail.foldLeft(reduceFunc(initial, head))(reduceFunc)
+  }
+  // override def foldLeft[A](initial: A)(reduceFunc: (A, Int) => A): A = ???
   /*
     override def foldLeft(initial: Int)(reduceFunc: (Int, Int) => Int): Int = {
     this match {

@@ -1,8 +1,10 @@
 package assignment1
 
 //import list.implementation.SinglyLinkedIntList
-import list.traits.IntList
 
+import list.implementation.SinglyLinkedIntList
+import list.traits.IntList
+import list.implementation.{Cons, Empty, SinglyLinkedIntList}
 
 //import list.implementation.Cons
 
@@ -16,17 +18,24 @@ object ProblemsLists {
     * E.x. duplicateNum(4,3)
     * -> SinglyLinkedList(4, 4, 4, 4)
     *
-    * @param i number to duplicate
+    * @param i     number to duplicate
     * @param times number of duplicates
     * @return List of duplicated numbers
     */
-  def duplicateNum(i:Int, times:Int):IntList= ???
- /* {
-    var x = times
-    for (x ==1 ) Cons.append
+  def duplicateNum(i: Int, times: Int): IntList = times match {
 
+    //ich muss einfach times mal eine liste zurück geben
+    //das passiert mit irgendeinen rekursiven aufruf
+    case 0 => Empty
+    case _ => Cons(head = i, tail = duplicateNum(i, times - 1))
   }
-*/
+  /* {
+     var x = times
+     for (x ==1 ) Cons.append
+
+   }
+ */
+
   /**
     *
     * Given an IntList l that contains even and odd numbers
@@ -38,10 +47,10 @@ object ProblemsLists {
     * -> SinglyLinkedList(1, 4, 4, 4, 3, 5, 8, 8, 8)
     *
     * @param times number of duplicates
-    * @param l IntList that should be processed
+    * @param l     IntList that should be processed
     * @return IntList that contains the duplicates and all other nums
     */
-  def duplicateEqualNumbers(times:Int, l:IntList): IntList= ???
+  def duplicateEqualNumbers(times: Int, l: IntList): IntList = ???
 
   /**
     *
@@ -56,7 +65,7 @@ object ProblemsLists {
     * @param l2 IntList in an ascending order
     * @return IntList that contains all numbers of both lists in an ascending order
     */
-  def merge(l1:IntList, l2:IntList):IntList= ???
+  def merge(l1: IntList, l2: IntList): IntList = ???
 
   /**
     *
@@ -72,8 +81,8 @@ object ProblemsLists {
     * @param l IntList to split
     * @return A tuple of two IntLists that contains the separated lists
     */
-  def splitList(l:IntList):(IntList,IntList)= ???
-//size : 2 -> 1.liste rekursiv solange abtrennen bis size erreicht, 2.liste rest
+  def splitList(l: IntList): (IntList, IntList) = ???
+  //size : 2 -> 1.liste rekursiv solange abtrennen bis size erreicht, 2.liste rest
 
   /**
     *
@@ -87,7 +96,7 @@ object ProblemsLists {
     * @param l IntList to sort
     * @return Sorted IntList
     */
-  def mergeSort(l:IntList):IntList= ???
+  def mergeSort(l: IntList): IntList = ???
 
   /*
   * Given the weight in kilograms, that a bag can hold, and a list of items represented by their weights
@@ -107,7 +116,7 @@ object ProblemsLists {
    * @param items weights of the items in kilograms that are available
    * @return maximum filling capacity
   */
-  def packProblem(capacity:Int, items:IntList):Int= ???
+  def packProblem(capacity: Int, items: IntList): Int = ???
 
   /**
     * Given the weight in kilograms, that a bag can hold, and a list of items represented by their weights
@@ -118,13 +127,13 @@ object ProblemsLists {
     * examples:
     * Input:  weights       = {4, 8, 1, 4, 2, 1}, Bin Capacity c = 10
     * Output: 2
-    *   We need minimum 2 bins to accommodate all items
-    *   First bin contains {4, 4, 2} and second bin {8, 1, 1}
-
+    * We need minimum 2 bins to accommodate all items
+    * First bin contains {4, 4, 2} and second bin {8, 1, 1}
+    *
     * Input:  weights       = {9, 8, 2, 2, 5, 4}
     * Bin Capacity c = 10
     * Output: 4
-    *   We need minimum 4 bins to accommodate all items.
+    * We need minimum 4 bins to accommodate all items.
     *
     * @param capacity   the capacity of a bag in kg
     * @param itemWeight weights of the items in grams (all item weights must be lower than the capacity because in

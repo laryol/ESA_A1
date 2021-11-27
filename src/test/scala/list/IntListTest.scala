@@ -93,7 +93,7 @@ class IntListTest extends AnyFunSuite {
     }) === 3)
   }
   test("testFoldLeft is left to right 2") {
-    assert(SinglyLinkedIntList(1, 2, 3, 4, 5).foldLeft(10)((x, y) => x-y) === -5)
+    assert(SinglyLinkedIntList(1, 2, 3, 4, 5).foldLeft(10)((x, y) => x - y) === -5)
   }
 
   test("testReduceLeft is left to right") {
@@ -105,7 +105,7 @@ class IntListTest extends AnyFunSuite {
   }
 
   test("testReduceLeft is left to right 2") {
-    assert(SinglyLinkedIntList(1,2,3,4,5).reduceLeft((x, y) => x-y) === -13)
+    assert(SinglyLinkedIntList(1, 2, 3, 4, 5).reduceLeft((x, y) => x - y) === -13)
   }
 
   /** ------------------------------------------
@@ -143,7 +143,7 @@ class IntListTest extends AnyFunSuite {
     }) === 3)
   }
   test("testFoldRight is right to left 2") {
-    assert(SinglyLinkedIntList(1, 2, 3,4,5).foldRight(10)((x, y) => x-y) === -7)
+    assert(SinglyLinkedIntList(1, 2, 3, 4, 5).foldRight(10)((x, y) => x - y) === -7)
   }
 
   test("testReduceRight") {
@@ -157,7 +157,7 @@ class IntListTest extends AnyFunSuite {
     }) === 1)
   }
   test("testReduceRight is right to left 2") {
-    assert(SinglyLinkedIntList(1, 2, 3, 4 ,5).reduceRight((x, y) => x-y) === 3)
+    assert(SinglyLinkedIntList(1, 2, 3, 4, 5).reduceRight((x, y) => x - y) === 3)
   }
   test("testInsertionSort") {
     assert(SinglyLinkedIntList(5, 1, 2, 4, 3).insertionSort == SinglyLinkedIntList(1, 2, 3, 4, 5))
@@ -166,11 +166,11 @@ class IntListTest extends AnyFunSuite {
     assert(SinglyLinkedIntList(1, 2, 3, 4).insertSorted(5) === SinglyLinkedIntList(1, 2, 3, 4, 5))
   }
 
-   test("testInsertSorted2") {
+  test("testInsertSorted2") {
     assert(SinglyLinkedIntList(1, 2, 3, 8).insertSorted(5) === SinglyLinkedIntList(1, 2, 3, 5, 8))
   }
-    test("testInsertSorted3") {
-    assert(SinglyLinkedIntList(1, 2, 3, 4,6).insertSorted(5) === SinglyLinkedIntList(1, 2, 3, 4, 5,6))
+  test("testInsertSorted3") {
+    assert(SinglyLinkedIntList(1, 2, 3, 4, 6).insertSorted(5) === SinglyLinkedIntList(1, 2, 3, 4, 5, 6))
   }
   test("testFoldLeft generic") {
     assert(SinglyLinkedIntList(1, 2, 3).foldLeft(5.0f)((x, y) => x + y) === 11)
@@ -179,10 +179,10 @@ class IntListTest extends AnyFunSuite {
     assert(SinglyLinkedIntList(1, 2, 3).foldLeft(5)((x, y) => x + y) === 11)
   }
   test("testFoldLeft generic 2") {
-    assert(SinglyLinkedIntList(1, 2, 3).foldLeft((0,0))((x, y) => (x._1 + y,x._2+1)) === (6,3))
+    assert(SinglyLinkedIntList(1, 2, 3).foldLeft((0, 0))((x, y) => (x._1 + y, x._2 + 1)) === (6, 3))
   }
   test("testFoldLeft generic 2 NEW___________________________________") {
-    assert(SinglyLinkedIntList(1, 2, 3).foldLeft((0,0))((x, y) => (x._1 + y,x._2+1)) === (6,3))
+    assert(SinglyLinkedIntList(1, 2, 3).foldLeft((0, 0))((x, y) => (x._1 + y, x._2 + 1)) === (6, 3))
   }
 
 
@@ -194,7 +194,7 @@ class IntListTest extends AnyFunSuite {
     }) === 3)
   }
   test("testFoldLeft generic is left to right 2") {
-    assert(SinglyLinkedIntList(1, 2, 3, 4).foldLeft(5.0f)((x, y) => y-x) === 7)
+    assert(SinglyLinkedIntList(1, 2, 3, 4).foldLeft(5.0f)((x, y) => y - x) === 7)
   }
 
   test("testFlipList") {
@@ -204,19 +204,19 @@ class IntListTest extends AnyFunSuite {
     assert(SinglyLinkedIntList(4, 5, 6, 6, 7).flip === SinglyLinkedIntList(7, 6, 6, 5, 4))
   }
   test("HOFsumoddnumbers") {
-    assert(ProblemsApplyHOF.sumOddNumbers(SinglyLinkedIntList(1,2,3,4,5,6,7)) === 16)
+    assert(ProblemsApplyHOF.sumOddNumbers(SinglyLinkedIntList(1, 2, 3, 4, 5, 6, 7)) === 16)
   }
   test("HOFcounteven") {
-    assert(ProblemsApplyHOF.countEvenNumbers(SinglyLinkedIntList(1,2,3,4,5,6,7,7,7,8,8)) === 5)
+    assert(ProblemsApplyHOF.countEvenNumbers(SinglyLinkedIntList(1, 2, 3, 4, 5, 6, 7, 7, 7, 8, 8)) === 5)
   }
   test("HOFmultiplyeven") {
-    assert(ProblemsApplyHOF.multiplyAndFilterEven(SinglyLinkedIntList(1,2,3,4,5,6),2) === SinglyLinkedIntList(4,8,12))
+    assert(ProblemsApplyHOF.multiplyAndFilterEven(SinglyLinkedIntList(1, 2, 3, 4, 5, 6), 2) === SinglyLinkedIntList(4, 8, 12))
   }
   test("HOFfindMin") {
-    assert(ProblemsApplyHOF.findMin(SinglyLinkedIntList(3,5,2,4,6,2,8,2)) === 2)
+    assert(ProblemsApplyHOF.findMin(SinglyLinkedIntList(3, 5, 2, 4, 6, 2, 8, 2)) === 2)
   }
   test("HOFmultiplyAndfilter") {
-    assert(ProblemsApplyHOF.multiplyAndFilterEven(SinglyLinkedIntList(1,2,3,4),3) === SinglyLinkedIntList(6,12))
+    assert(ProblemsApplyHOF.multiplyAndFilterEven(SinglyLinkedIntList(1, 2, 3, 4), 3) === SinglyLinkedIntList(6, 12))
   }
   test("testAppend22222222") {
     assert(SinglyLinkedIntList(4, 5, 6).append(7) === SinglyLinkedIntList(4, 5, 6, 7))
