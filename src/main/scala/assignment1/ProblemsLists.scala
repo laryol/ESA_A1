@@ -50,13 +50,39 @@ object ProblemsLists {
     * @param l     IntList that should be processed
     * @return IntList that contains the duplicates and all other nums
     */
+/*
   def duplicateEqualNumbers(times: Int, l: IntList): IntList = {
-    this match {
-      case _ if (l.head % 2 == 0) => duplicateNum(l.head, times)
-      //case _ if (l.head % 2 == 1) =>
-    }
+    l.map(if (l.head % 2 ==0) x => duplicateNum(l.head,times) else x => x)
   }
 
+ */
+  def duplicateEqualNumbers(times: Int, l: IntList): IntList = {
+    val li = SinglyLinkedIntList()
+    def helper_duplicateEqualNumbers(li:IntList,l:IntList): IntList ={
+      this match {
+        case _ if (l.head % 2 == 0) => if(l.tail.isEmpty) {println("1");li.prefix(duplicateNum(l.head, times)).flip }else helper_duplicateEqualNumbers(li.prefix(duplicateNum(l.head, times)),l.tail)
+        case _ if (l.head % 2 == 1) => if(l.tail.isEmpty) {println("2");li.prepend(l.head).flip }else helper_duplicateEqualNumbers(li.prepend(l.head),l.tail)
+      }
+    }
+    helper_duplicateEqualNumbers(li,l)
+
+  }
+ /*
+     l.map(if (l.head % 2 ==0) x => duplicateNum(l.head,times) else x => x)
+
+
+
+  def duplicateEqualNumbers(times:Int, l:IntList): IntList = {
+    def check(times:Int,lis: IntList): IntList = {
+      if (lis.head % 2 == 0) duplicateNum(lis.head, times)
+      else {println("else");Cons(lis.head, Empty)}
+    }
+
+    if (l.isEmpty) { println("t1");Empty}
+    else if (l.tail.isEmpty) {println("t2");Cons(l.head, Empty)} //hier muss dann noch fallunterscheidung durchgeführt werden
+    else {println("t3");check(times, l.tail)}
+  }
+*/
   /**
     *
     * Given two ordered IntLists l1 and l2 (ascending)
@@ -76,18 +102,24 @@ object ProblemsLists {
     def helper_merge(l1: IntList, l2: IntList, liste: IntList, i: Int): (IntList) = {
       i match {
         case _ if (i < (l1.size + l2.size + liste.size)) => if (l1.isEmpty) {
-          println("Nil l1 "); helper_merge(l1, l2.tail, liste.append(l2.head), (i + 1))
+          println("Nil l1 ");
+          helper_merge(l1, l2.tail, liste.append(l2.head), (i + 1))
         } else if (l2.isEmpty) {
-          println("Nil l2 "); helper_merge(l1.tail, l2, liste.append(l1.head), (i + 1))
+          println("Nil l2 ");
+          helper_merge(l1.tail, l2, liste.append(l1.head), (i + 1))
         } else if (l1.head <= l2.head) {
-          println("l1<l2 i=" + i + "head " + l1.head); helper_merge(l1.tail, l2, liste.append(l1.head), (i + 1))
+          println("l1<l2 i=" + i + "head " + l1.head);
+          helper_merge(l1.tail, l2, liste.append(l1.head), (i + 1))
         } else if (l1.head > l2.head) {
-          println("l1>l2 i=" + i + "head " + l2.head); helper_merge(l1, l2.tail, liste.append(l2.head), (i + 1))
+          println("l1>l2 i=" + i + "head " + l2.head);
+          helper_merge(l1, l2.tail, liste.append(l2.head), (i + 1))
         } else {
-          println("hi 5"); liste
+          println("hi 5");
+          liste
         }
         case _ => {
-          println("a5"); liste
+          println("a5");
+          liste
         }
       }
     }
@@ -164,10 +196,32 @@ object ProblemsLists {
     * @param l IntList to sort
     * @return Sorted IntList
     */
-  def mergeSort(l: IntList): IntList = {
 
+  def mergeSort(l: IntList): IntList = ???
+  /*
+  def mergeSort(l: IntList): IntList = {
+    var l1 = SinglyLinkedIntList()
+    var l2 = SinglyLinkedIntList()
+    (l1,l2) = (splitList(l))
+
+
+    merge(splitList(l))
   }
 
+  def mergeSort(l: IntList): IntList = {
+    val l1 = SinglyLinkedIntList()
+    val l2 = SinglyLinkedIntList()
+    def helper_mergeSort(l11: IntList, l22: IntList): (IntList, IntList) = {
+
+      this match {
+        case _ if (l1.size>=2 || l2.size>=2) =>  (l1,l2) = splitList(l); splitList(l1);splitList(l2)
+        case _ if (l1.size>=2 || l2.size>=2) =>  (l1,l2) = splitList(l); splitList(l1);splitList(l2)
+        case _ => splitList(l)
+      }
+    }
+    helper_mergeSort(splitList(l))
+  }
+*/
   /*
 * Given the weight in kilograms, that a bag can hold, and a list of items represented by their weights
  * in kilograms.
