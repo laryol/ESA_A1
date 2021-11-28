@@ -62,10 +62,10 @@ object ProblemsLists {
     def helper_duplicateEqualNumbers(li: IntList, l: IntList): IntList = {
       this match {
         case _ if (l.head % 2 == 0) => if (l.tail.isEmpty) {
-          println("1"); li.prefix(duplicateNum(l.head, times)).flip
+           li.prefix(duplicateNum(l.head, times)).flip
         } else helper_duplicateEqualNumbers(li.prefix(duplicateNum(l.head, times)), l.tail)
         case _ if (l.head % 2 == 1) => if (l.tail.isEmpty) {
-          println("2"); li.prepend(l.head).flip
+           li.prepend(l.head).flip
         } else helper_duplicateEqualNumbers(li.prepend(l.head), l.tail)
       }
     }
@@ -109,23 +109,23 @@ object ProblemsLists {
     def helper_merge(l1: IntList, l2: IntList, liste: IntList, i: Int): (IntList) = {
       i match {
         case _ if (i < (l1.size + l2.size + liste.size)) => if (l1.isEmpty) {
-          println("Nil l1 ");
+
           helper_merge(l1, l2.tail, liste.append(l2.head), (i + 1))
         } else if (l2.isEmpty) {
-          println("Nil l2 ");
+
           helper_merge(l1.tail, l2, liste.append(l1.head), (i + 1))
         } else if (l1.head <= l2.head) {
-          println("l1<l2 i=" + i + "head " + l1.head);
+
           helper_merge(l1.tail, l2, liste.append(l1.head), (i + 1))
         } else if (l1.head > l2.head) {
-          println("l1>l2 i=" + i + "head " + l2.head);
+
           helper_merge(l1, l2.tail, liste.append(l2.head), (i + 1))
         } else {
-          println("hi 5");
+
           liste
         }
         case _ => {
-          println("a5");
+
           liste
         }
       }
@@ -204,8 +204,13 @@ object ProblemsLists {
     * @return Sorted IntList
     */
 
+
   def mergeSort(l: IntList): IntList = ???
 
+  /**
+    Wir haben leider keine passende Lösung zu mergeSort gefunden. Vom Prinzip her muss solange splitlist angewendet werden, bis jedes Element eine eigene Liste bildet, welche man dann mit merge zusammen fügt.
+    Leider ist die Implementierung uns einfach nicht gelungen
+    */
   /*
   def mergeSort(l: IntList): IntList = {
     var l1 = SinglyLinkedIntList()

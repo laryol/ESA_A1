@@ -209,9 +209,7 @@ class IntListTest extends AnyFunSuite {
   test("HOFcounteven") {
     assert(ProblemsApplyHOF.countEvenNumbers(SinglyLinkedIntList(1, 2, 3, 4, 5, 6, 7, 7, 7, 8, 8)) === 5)
   }
-  test("HOFmultiplyeven") {
-    assert(ProblemsApplyHOF.multiplyAndFilterEven(SinglyLinkedIntList(1, 2, 3, 4, 5, 6), 2) === SinglyLinkedIntList(4, 8, 12))
-  }
+
   test("HOFfindMin") {
     assert(ProblemsApplyHOF.findMin(SinglyLinkedIntList(3, 5, 2, 4, 6, 2, 8, 2)) === 2)
   }
