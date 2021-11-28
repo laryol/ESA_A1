@@ -50,39 +50,46 @@ object ProblemsLists {
     * @param l     IntList that should be processed
     * @return IntList that contains the duplicates and all other nums
     */
-/*
-  def duplicateEqualNumbers(times: Int, l: IntList): IntList = {
-    l.map(if (l.head % 2 ==0) x => duplicateNum(l.head,times) else x => x)
-  }
+  /*
+    def duplicateEqualNumbers(times: Int, l: IntList): IntList = {
+      l.map(if (l.head % 2 ==0) x => duplicateNum(l.head,times) else x => x)
+    }
 
- */
+   */
   def duplicateEqualNumbers(times: Int, l: IntList): IntList = {
     val li = SinglyLinkedIntList()
-    def helper_duplicateEqualNumbers(li:IntList,l:IntList): IntList ={
+
+    def helper_duplicateEqualNumbers(li: IntList, l: IntList): IntList = {
       this match {
-        case _ if (l.head % 2 == 0) => if(l.tail.isEmpty) {println("1");li.prefix(duplicateNum(l.head, times)).flip }else helper_duplicateEqualNumbers(li.prefix(duplicateNum(l.head, times)),l.tail)
-        case _ if (l.head % 2 == 1) => if(l.tail.isEmpty) {println("2");li.prepend(l.head).flip }else helper_duplicateEqualNumbers(li.prepend(l.head),l.tail)
+        case _ if (l.head % 2 == 0) => if (l.tail.isEmpty) {
+          println("1"); li.prefix(duplicateNum(l.head, times)).flip
+        } else helper_duplicateEqualNumbers(li.prefix(duplicateNum(l.head, times)), l.tail)
+        case _ if (l.head % 2 == 1) => if (l.tail.isEmpty) {
+          println("2"); li.prepend(l.head).flip
+        } else helper_duplicateEqualNumbers(li.prepend(l.head), l.tail)
       }
     }
-    helper_duplicateEqualNumbers(li,l)
+
+    helper_duplicateEqualNumbers(li, l)
 
   }
- /*
-     l.map(if (l.head % 2 ==0) x => duplicateNum(l.head,times) else x => x)
+  /*
+      l.map(if (l.head % 2 ==0) x => duplicateNum(l.head,times) else x => x)
 
 
 
-  def duplicateEqualNumbers(times:Int, l:IntList): IntList = {
-    def check(times:Int,lis: IntList): IntList = {
-      if (lis.head % 2 == 0) duplicateNum(lis.head, times)
-      else {println("else");Cons(lis.head, Empty)}
-    }
+   def duplicateEqualNumbers(times:Int, l:IntList): IntList = {
+     def check(times:Int,lis: IntList): IntList = {
+       if (lis.head % 2 == 0) duplicateNum(lis.head, times)
+       else {println("else");Cons(lis.head, Empty)}
+     }
 
-    if (l.isEmpty) { println("t1");Empty}
-    else if (l.tail.isEmpty) {println("t2");Cons(l.head, Empty)} //hier muss dann noch fallunterscheidung durchgeführt werden
-    else {println("t3");check(times, l.tail)}
-  }
-*/
+     if (l.isEmpty) { println("t1");Empty}
+     else if (l.tail.isEmpty) {println("t2");Cons(l.head, Empty)} //hier muss dann noch fallunterscheidung durchgeführt werden
+     else {println("t3");check(times, l.tail)}
+   }
+ */
+
   /**
     *
     * Given two ordered IntLists l1 and l2 (ascending)
@@ -198,6 +205,7 @@ object ProblemsLists {
     */
 
   def mergeSort(l: IntList): IntList = ???
+
   /*
   def mergeSort(l: IntList): IntList = {
     var l1 = SinglyLinkedIntList()
@@ -240,7 +248,22 @@ object ProblemsLists {
  * @param items weights of the items in kilograms that are available
  * @return maximum filling capacity
 */
-  def packProblem(capacity: Int, items: IntList): Int = ???
+  def packProblem(capacity: Int, items: IntList): Int = {
+
+    def helper_packProblem(c1: Int, items: IntList): Int = {
+      this match {
+        case _ if (items.tail.isEmpty) => if (c1 - items.insertionSort.flip.head >= 0) capacity - (c1 - items.head) else capacity - c1
+        case _ if ((c1) > 0) => if (c1 - items.insertionSort.flip.head >= 0) {
+          helper_packProblem(c1 - items.insertionSort.flip.head, items.tail)
+        } else {
+          helper_packProblem(c1, items.tail)
+        }
+        case _ => capacity - c1
+      }
+    }
+
+    helper_packProblem(capacity, items)
+  }
 
   /**
     * Given the weight in kilograms, that a bag can hold, and a list of items represented by their weights
