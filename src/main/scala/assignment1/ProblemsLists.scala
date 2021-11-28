@@ -50,7 +50,12 @@ object ProblemsLists {
     * @param l     IntList that should be processed
     * @return IntList that contains the duplicates and all other nums
     */
-  def duplicateEqualNumbers(times: Int, l: IntList): IntList = ???
+  def duplicateEqualNumbers(times: Int, l: IntList): IntList = {
+    this match {
+      case _ if (l.head % 2 == 0) => duplicateNum(l.head, times)
+      //case _ if (l.head % 2 == 1) =>
+    }
+  }
 
   /**
     *
@@ -65,7 +70,30 @@ object ProblemsLists {
     * @param l2 IntList in an ascending order
     * @return IntList that contains all numbers of both lists in an ascending order
     */
-  def merge(l1: IntList, l2: IntList): IntList = ???
+  def merge(l1: IntList, l2: IntList): IntList = {
+    val li = SinglyLinkedIntList()
+
+    def helper_merge(l1: IntList, l2: IntList, liste: IntList, i: Int): (IntList) = {
+      i match {
+        case _ if (i < (l1.size + l2.size + liste.size)) => if (l1.isEmpty) {
+          println("Nil l1 "); helper_merge(l1, l2.tail, liste.append(l2.head), (i + 1))
+        } else if (l2.isEmpty) {
+          println("Nil l2 "); helper_merge(l1.tail, l2, liste.append(l1.head), (i + 1))
+        } else if (l1.head <= l2.head) {
+          println("l1<l2 i=" + i + "head " + l1.head); helper_merge(l1.tail, l2, liste.append(l1.head), (i + 1))
+        } else if (l1.head > l2.head) {
+          println("l1>l2 i=" + i + "head " + l2.head); helper_merge(l1, l2.tail, liste.append(l2.head), (i + 1))
+        } else {
+          println("hi 5"); liste
+        }
+        case _ => {
+          println("a5"); liste
+        }
+      }
+    }
+
+    helper_merge(l1, l2, li, 0)
+  }
 
   /**
     *
@@ -81,8 +109,48 @@ object ProblemsLists {
     * @param l IntList to split
     * @return A tuple of two IntLists that contains the separated lists
     */
-  def splitList(l: IntList): (IntList, IntList) = ???
+  //def splitList(l: IntList): (IntList, IntList) = ???
+
+  def splitList(l: IntList): (IntList, IntList) = {
+    val li = SinglyLinkedIntList()
+
+    def helper_splitList(ll: IntList, liste: IntList, i: Int): (IntList, IntList) = {
+      i match {
+        //  case _ if (i <(l.size +1/ 2)) => println((((l.size +1/ 2))))
+        //  helper_splitList(ll.tail, liste.append(ll.head), (i + 1))
+        case _ if ((i < l.size / 2) && (l.size % 2 == 0)) => helper_splitList(ll.tail, liste.append(ll.head), (i + 1))
+        case _ if ((i < l.size / 2 + 1) && (l.size % 2 == 1)) => helper_splitList(ll.tail, liste.append(ll.head), (i + 1))
+        case _ => (liste.insertionSort, l.insertionSort)
+      }
+    }
+
+    helper_splitList(l, li, 0)
+  }
+  //  case 0 => Empty
+  //  case _ => Cons(head = i, tail = duplicateNum(i, times - 1))
   //size : 2 -> 1.liste rekursiv solange abtrennen bis size erreicht, 2.liste rest
+  /*
+  def splitList(l: IntList): (IntList, IntList) = {
+    var lis = List()
+    val li = SinglyLinkedIntList()
+
+    def helper_splitList(l: IntList): (IntList, IntList) = {
+      this match {
+        case _ if (li.size < l.size / 2 + 1) => {
+          println("hi 1")
+          l.append(1111)
+          println(l)
+          li.append(l.head)
+          println(li)
+          splitList(l.tail)
+        }
+        case _ => println("hi 2")
+          (li, l)
+      }
+    }
+    helper_splitList(l)
+  }
+* */
 
   /**
     *
@@ -96,26 +164,28 @@ object ProblemsLists {
     * @param l IntList to sort
     * @return Sorted IntList
     */
-  def mergeSort(l: IntList): IntList = ???
+  def mergeSort(l: IntList): IntList = {
+
+  }
 
   /*
-  * Given the weight in kilograms, that a bag can hold, and a list of items represented by their weights
-   * in kilograms.
-   * Calculate the maximum weight that fits into the bag.
-   *
-   * examples:
-   * Input:  items      = {4, 8, 5, 4, 2, 1}, Bag Capacity c = 10
-   * Output: 10
-   *   With e.g. {4, 4, 2} , {8, 1, 1} or {5, 4, 1} the maximum could be reached
-   *
-   * Input:  items       = {3, 3, 4, 4, 8}, Bag Capacity c = 9
-   * Output: 8
-   * With {4, 4} the maximum could be reached
-   *
-   * @param capacity   the capacity of a bag in kg
-   * @param items weights of the items in kilograms that are available
-   * @return maximum filling capacity
-  */
+* Given the weight in kilograms, that a bag can hold, and a list of items represented by their weights
+ * in kilograms.
+ * Calculate the maximum weight that fits into the bag.
+ *
+ * examples:
+ * Input:  items      = {4, 8, 5, 4, 2, 1}, Bag Capacity c = 10
+ * Output: 10
+ *   With e.g. {4, 4, 2} , {8, 1, 1} or {5, 4, 1} the maximum could be reached
+ *
+ * Input:  items       = {3, 3, 4, 4, 8}, Bag Capacity c = 9
+ * Output: 8
+ * With {4, 4} the maximum could be reached
+ *
+ * @param capacity   the capacity of a bag in kg
+ * @param items weights of the items in kilograms that are available
+ * @return maximum filling capacity
+*/
   def packProblem(capacity: Int, items: IntList): Int = ???
 
   /**
